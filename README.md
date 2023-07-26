@@ -11,7 +11,7 @@ Versión de Node.js requerida: 18.17.0 LTS
 
 ## Ejercicios
 
-1. Con `npm init`, crea un archivo `package.json` en el directorio raíz del proyecto con esta información. El nombre del proyecto debe ser `ejercicios-nodejs`, todo lo demás no importa.
+1. #LISTO Con `npm init`, crea un archivo `package.json` en el directorio raíz del proyecto con esta información. El nombre del proyecto debe ser `ejercicios-nodejs`, todo lo demás no importa.
 
 2. En el archivo `index.js`, completa la función `writeFile`:
 
