@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/midu-dev/01-ejercicios-alexgonzalese/issues"
   },
-  "homepage": "https://github.com/midu-dev/01-ejercicios-alexgonzalese#readme"
+  "homepage": "https://github.com/midu-dev/01-ejercicios-alexgonzalese#readme",
+  "devDependencies": {
+    "@types/node": "^20.4.5"
+  }
 }
