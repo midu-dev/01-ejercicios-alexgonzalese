@@ -24,5 +24,8 @@
   "homepage": "https://github.com/midu-dev/01-ejercicios-alexgonzalese#readme",
   "devDependencies": {
     "@types/node": "^20.4.5"
+  },
+  "dependencies": {
+    "picocolors": "^1.0.0"
   }
 }

@@ -14,6 +14,7 @@ test('1. package.json is present', (t) => {
 
 test('2. writeFile', (t, done) => {
   const filePath = path.join('tmp', 'testfile')
+  console.log('\x1b[44m%s\x1b[0m', 'index.js line:17 filePath', filePath);
   writeFile(filePath, 'test data', (err) => {
     assert.ifError(err)
     // check if file exists

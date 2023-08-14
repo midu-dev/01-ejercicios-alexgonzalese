@@ -1,67 +1,65 @@
+const pc = require("picocolors");
+const { join, resolve, path } = require("node:path");
+const fs = require("node:fs");
+const fsp = require("node:fs/promises");
+
 // Ejercicio 2
 
-const fs = require('fs');
-async function writeFile (filePath, data, callback) {
-  
-  const writeStream = fs.createWriteStream(filePath);
+//crear una funcion para escribir un archivo
 
-  
-  
-  writeStream.write(data, 'utf-8', (err) => {
-    if (err) {
-      console.error('Error al escribir el archivo:', err);
-    } else {
-      console.log('Archivo escrito exitosamente.');
-      if (typeof callback === 'function') {
-        callback();
-      }
-    }
-    writeStream.end();
-  });
+async function writeFile(filePath, data, callback) {
+  //separo la ruta del archivo
+  const newRoute = filePath.split("/").slice(0, -1).toString();
+  const fileName = filePath.split("/").slice(-1).toString();
+
+  const directory = join(__dirname, filePath);
+  const file = join(directory.toString(), fileName);
+  //creo el directorio
+  try {
+    await fsp.mkdir(filePath, { recursive: true });
+  } catch (err) {
+    console.log("\x1b[41m%s\x1b[0m", "index.js line:14 mkdir", { err });
+  }
+
+  try {
+    await fsp.writeFile(filePath, data);
+  } catch (err) {
+    console.log("\x1b[41m%s\x1b[0m", "index.js line:20 writeFile", { err });
+  }
+  callback();
 }
 
 // Ejercicio 3
-async function readFileAndCount (word, callback) {
-  if (!word) {
-    return callback(new Error('No se hay palabra a buscar'));
+async function readFileAndCount(word, callback) {
+  const filePath = process.argv[2] || "";
+
+  const patchIsValid = filePath && filePath.length > 0;
+  if (!patchIsValid) return await callback(
+    new Error("No se ha especificado el path del archivo"),
+    0
+  );
+
+  const wordIsValid = word && word.length > 0;
+  if (!wordIsValid) return await callback(
+    new Error("No se ha especificado la palabra a buscar"),
+    0
+  );
+
+  console.log("\x1b[44m%s\x1b[0m", "index.js line:46 llego");
+
+  const fileExists = await fs.existsSync(filePath);
+  if (!fileExists) return await callback(null, 0);
+
+  try {
+    const string = await fsp.readFile(filePath, "utf-8");
+    const count = string.split(word).length - 1;
+    return callback(null, count);
+  } catch (error) {
+    return callback(error, 0);
   }
-
-
-  if (process.argv.length < 3) {
-    return callback(new Error('No se encuentra el path del archivo'));
-  }
-
-  const filePath = process.argv[2];
-
-
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-
-      if (err.code === 'ENOENT') {
-        return callback(null, 0);
-      } else {
-
-        return callback(err);
-      }
-    }
-
-    const occurrences = (data.match(new RegExp(`\\b${word}\\b`, 'gi')) || []).length;
-    callback(null, occurrences);
-  });
-
-
-
-  readFileAndCount(word, (err, result) => {
-    if (err) {
-      console.error(err.message);
-    } else {
-      console.log(`La palabra "${word}" aparece ${result} veces en el archivo.`);
-    }
-  });
-
 }
 
 module.exports = {
   writeFile,
-  readFileAndCount
-}
+  readFileAndCount,
+};

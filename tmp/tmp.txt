@@ -1,1 +1,0 @@
-node is a powerful runtime environment that allows you to build scalable and high-performance applications. With node, you can use JavaScript on the server-side, and it has a vast ecosystem of packages available through npm (node Package Manager).
