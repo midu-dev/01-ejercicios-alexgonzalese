@@ -1,0 +1,31 @@
+{
+  "name": "ejercicios-nodejs",
+  "version": "1.0.0",
+  "description": "ejercicios-nodejs",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://alexgonzalese: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@github.com/midu-dev/01-ejercicios-alexgonzalese.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "alexgonzalese",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/midu-dev/01-ejercicios-alexgonzalese/issues"
+  },
+  "homepage": "https://github.com/midu-dev/01-ejercicios-alexgonzalese#readme",
+  "devDependencies": {
+    "@types/node": "^20.4.5"
+  },
+  "dependencies": {
+    "picocolors": "^1.0.0"
+  }
+}
